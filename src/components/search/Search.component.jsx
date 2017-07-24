@@ -15,7 +15,7 @@ class Search extends Component{
 
     render(){
         return (
-            <input type="text" value={this.props.name}  onChange={ this.handleChange } placeholder="buscar"/>
+            <input className="input" type="text" value={this.props.name}  onChange={ this.handleChange } placeholder="buscar"/>
         )
     }
 }

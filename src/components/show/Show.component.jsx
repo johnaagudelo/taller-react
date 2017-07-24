@@ -14,10 +14,18 @@ class Show extends Component {
         }
 
         this.SearchShow = this.SearchShow.bind(this)
+        this.shows = this.shows.bind(this)
     }
 
-    async componentWillMount() {
-        const shows = await util.getShows()
+    componentWillMount() {
+        this.shows()
+    }
+
+    async shows(filter = ''){
+        let shows = await util.getShows()
+        if (filter) {
+            shows = shows.filter(show => show.show.name.toLowerCase().includes(filter.toLowerCase()))
+        }
         this.setState({
             shows,
             loading: false
@@ -25,22 +33,20 @@ class Show extends Component {
     }
 
     SearchShow(value) {
-        this.setState({ 
-            shows: value 
-        })
+        this.shows(value)
     }
 
     render() {
         return (
-            <div>
+            <div className="Container" >
                 <Search name={this.state.name} onShowInput={this.SearchShow} />
-                <section>
+                <section className="shows">
                     {
                         this.state.shows.map(show => {
                             return (
-                                <div key={show.id}>
+                                <div className="show" key={show.id}>
                                     <img src={show.show.image.medium} alt={show.show.name} />
-                                    <div>{show.show.name}</div>
+                                    <div className="show-name" >{show.show.name}</div>
                                     <div>{show.show.schedule.time}</div>
                                     <div>{show.show.language}</div>
                                 </div>
