@@ -23,6 +23,7 @@ class Show extends Component {
 
     async shows(filter = ''){
         let shows = await util.getShows()
+        console.log(shows)
         if (filter) {
             shows = shows.filter(show => show.show.name.toLowerCase().includes(filter.toLowerCase()))
         }
@@ -43,14 +44,17 @@ class Show extends Component {
                 <section className="shows">
                     {
                         this.state.shows.map(show => {
-                            return (
-                                <div className="show" key={show.id}>
-                                    <img src={show.show.image.medium} alt={show.show.name} />
-                                    <div className="show-name" >{show.show.name}</div>
-                                    <div>{show.show.schedule.time}</div>
-                                    <div>{show.show.language}</div>
-                                </div>
-                            )
+                            if(show.show.image){ 
+                                return (
+                                    <div className="show" key={show.id}>
+                                        <img src={show.show.image.medium} alt="show.show.name"/>
+                                        <div className="show-name" >{show.show.name}</div>
+                                        <div>{show.show.schedule.time}</div>
+                                        <div>{show.show.language}</div>
+                                    </div>
+                                )
+                            }
+                            
                         })
                     }
                 </section>

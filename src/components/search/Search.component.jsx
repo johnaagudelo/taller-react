@@ -8,8 +8,8 @@ class Search extends Component{
         this.handleChange = this.handleChange.bind(this)
     }
     
-    handleChange(eve){
-        let value = eve.target.value
+    handleChange(e){
+        let value = e.target.value
         this.props.onShowInput(value);
     }
 
