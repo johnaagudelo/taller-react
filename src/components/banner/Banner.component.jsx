@@ -1,20 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import logo from './logo.svg';
 import './Banner.css'
 
-class Banner extends Component {
-    constructor(props) {
-        super(props)
-    }
+import { connect } from 'react-redux'
 
-    render() {
-        return (
-            <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>{ this.props.title }</h2>
-            </div>
-        )
+function Banner(props){
+    return (
+        <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>{ props.title }</h2>
+        </div>
+    )
+}
+
+function mapStateToProps(state){
+    console.log(state)
+    return {
+        title: state.header.title
     }
 }
 
-export default Banner
+export default connect(mapStateToProps)(Banner)

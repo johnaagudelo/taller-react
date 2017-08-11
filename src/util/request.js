@@ -1,4 +1,4 @@
-const URL = 'http://api.tvmaze.com'
+const URL = 'https://api.tvmaze.com'
 export default {
     async getShows() {
         const response = await fetch(`${URL}/schedule`)

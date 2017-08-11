@@ -1,12 +1,22 @@
+import util from '../util/request'
 
-function filterShow(data){
+function setData(data){
     return {
-        type: 'FILTER',
-        payload: data
+        type: 'SET_DATA',
+        payload: {
+            shows: data
+        }
     }
 }
 
+function getData(){
+    return async (dispatch, state) => {
+        const data = await util.getShows() 
+        dispatch(setData(data))
+    }
+}
 
 export default {
-    filterShow
+    setData,
+    getData
 }
